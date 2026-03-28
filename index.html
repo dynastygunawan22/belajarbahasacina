@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="汉语学堂 - Platform belajar Bahasa Mandarin modern dengan AI. Flashcard, Kuis Adaptif, Mini Game, dan Tutor AI." />
+  <meta name="theme-color" content="#1a1a2e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>汉语学堂 · HanYu Academy</title>
+
+  <!-- Favicon SVG inline -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23C8102E'/><text y='.9em' font-size='72' font-family='serif' x='50%' text-anchor='middle' fill='white'>汉</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/vocab.css" />
+  <link rel="stylesheet" href="css/flashcard.css" />
+  <link rel="stylesheet" href="css/quiz.css" />
+  <link rel="stylesheet" href="css/game.css" />
+  <link rel="stylesheet" href="css/ai.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- Background decoration -->
+  <div class="bg-deco" aria-hidden="true">
+    <div class="bg-orb bg-orb--red"></div>
+    <div class="bg-orb bg-orb--gold"></div>
+    <div class="bg-watermark">学</div>
+  </div>
+
+  <!-- ===== DESKTOP NAV ===== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo" onclick="return false" aria-label="HanYu Academy">
+      <div class="nav-logo-char" aria-hidden="true">汉</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-cn">汉语学堂</span>
+        <span class="nav-logo-id">HanYu Academy</span>
+      </div>
+    </a>
+
+    <div class="nav-tabs" role="tablist" aria-label="Navigasi utama">
+      <button class="nav-tab active" role="tab" aria-selected="true"  onclick="showPage('home')"      data-page="home">🏠 Beranda</button>
+      <button class="nav-tab"        role="tab" aria-selected="false" onclick="showPage('vocab')"     data-page="vocab">📚 Kosakata</button>
+      <button class="nav-tab"        role="tab" aria-selected="false" onclick="showPage('flashcard')" data-page="flashcard">🃏 Flashcard</button>
+      <button class="nav-tab"        role="tab" aria-selected="false" onclick="showPage('quiz')"      data-page="quiz">📝 Kuis AI</button>
+      <button class="nav-tab"        role="tab" aria-selected="false" onclick="showPage('game')"      data-page="game">🎮 Mini Game</button>
+      <button class="nav-tab"        role="tab" aria-selected="false" onclick="showPage('ai')"        data-page="ai">🤖 Tutor AI</button>
+    </div>
+
+    <div class="nav-right">
+      <div class="streak-badge" id="streakBadge" title="Hari belajar beruntun">
+        🔥 <span id="streakNum">1</span> hari
+      </div>
+      <div class="xp-badge" title="Total XP">
+        ⭐ <span id="xpNum">0</span> XP
+      </div>
+      <button class="nav-settings-btn" onclick="showPage('settings')" title="Pengaturan" aria-label="Pengaturan">⚙️</button>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home" role="tabpanel" aria-labelledby="tab-home">
+      <section class="hero">
+        <div class="hero-tag">✨ Belajar Bahasa Mandarin Modern dengan AI</div>
+        <h1 class="hero-title">
+          Kuasai Bahasa
+          <span class="hero-cn">普通话</span>
+          dengan Cerdas
+        </h1>
+        <p class="hero-desc">Platform interaktif belajar Mandarin modern. Flashcard, kuis adaptif AI, mini game seru, dan tutor AI pribadi — semua dalam satu tempat.</p>
+        <div class="hero-btns">
+          <button class="btn btn--primary" onclick="showPage('flashcard')">🃏 Mulai Belajar</button>
+          <button class="btn btn--ghost"   onclick="showPage('ai')">🤖 Chat dengan AI</button>
+        </div>
+      </section>
+
+      <section class="progress-section" aria-label="Progres belajar">
+        <h2 class="section-heading">📊 Progres Belajarmu</h2>
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-num" id="statWords">0</div><div class="stat-label">Kata Dipelajari</div></div>
+          <div class="stat-item"><div class="stat-num" id="statQuiz">0</div><div class="stat-label">Kuis Selesai</div></div>
+          <div class="stat-item"><div class="stat-num" id="statStreak">1</div><div class="stat-label">Hari Beruntun</div></div>
+          <div class="stat-item"><div class="stat-num" id="statXP">0</div><div class="stat-label">Total XP</div></div>
+        </div>
+        <div class="level-bar-wrap">
+          <div class="level-bar-label">
+            <span>Level: <strong id="levelName">HSK 1 · Pemula</strong></span>
+            <span id="levelPercent">0%</span>
+          </div>
+          <div class="level-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="level-bar-fill" id="levelBarFill"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="feature-grid">
+        <div class="feature-card" onclick="showPage('flashcard')" tabindex="0" onkeypress="if(event.key==='Enter')showPage('flashcard')">
+          <span class="feature-icon">🃏</span>
+          <h3>Flashcard Interaktif</h3>
+          <p>Belajar karakter Hanzi, pinyin, dan artinya dengan kartu 3D bolak-balik yang menyenangkan.</p>
+        </div>
+        <div class="feature-card" onclick="showPage('quiz')" tabindex="0" onkeypress="if(event.key==='Enter')showPage('quiz')">
+          <span class="feature-icon">🤖</span>
+          <h3>Kuis Adaptif AI</h3>
+          <p>AI membuat soal unik setiap sesi, disesuaikan level kemampuanmu secara otomatis.</p>
+        </div>
+        <div class="feature-card" onclick="showPage('game')" tabindex="0" onkeypress="if(event.key==='Enter')showPage('game')">
+          <span class="feature-icon">🎮</span>
+          <h3>Mini Game</h3>
+          <p>Tebak karakter Hanzi secepat mungkin dalam 30 detik! Semakin cepat, semakin banyak poin.</p>
+        </div>
+        <div class="feature-card" onclick="showPage('ai')" tabindex="0" onkeypress="if(event.key==='Enter')showPage('ai')">
+          <span class="feature-icon">💬</span>
+          <h3>Tutor AI Pribadi</h3>
+          <p>Tanya apa saja — grammar, kosakata, budaya, dialog. AI siap membantu 24 jam.</p>
+        </div>
+        <div class="feature-card" onclick="showPage('vocab')" tabindex="0" onkeypress="if(event.key==='Enter')showPage('vocab')">
+          <span class="feature-icon">📚</span>
+          <h3>Bank Kosakata</h3>
+          <p>50+ kata Mandarin modern per kategori dengan pelafalan audio dan contoh kalimat.</p>
+        </div>
+        <div class="feature-card" onclick="demoSpeak()" tabindex="0" onkeypress="if(event.key==='Enter')demoSpeak()">
+          <span class="feature-icon">🔊</span>
+          <h3>Audio Pelafalan</h3>
+          <p>Dengarkan pelafalan asli setiap kata. Klik kartu ini untuk mencoba!</p>
+        </div>
+      </div>
+
+      <!-- Daily tip section -->
+      <section class="daily-tip" id="dailyTip">
+        <div class="tip-icon">💡</div>
+        <div>
+          <div class="tip-title">Tips Hari Ini</div>
+          <div class="tip-text" id="tipText">Memuat tips...</div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VOCAB PAGE -->
+    <div class="page" id="page-vocab" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">📚 Bank Kosakata</h1>
+        <p class="section-sub">Koleksi kata Mandarin modern — klik untuk dengar pelafalan</p>
+      </div>
+      <div class="filter-bar" id="vocabFilter" role="group" aria-label="Filter kategori"></div>
+      <div class="vocab-grid" id="vocabGrid" role="list"></div>
+    </div>
+
+    <!-- FLASHCARD PAGE -->
+    <div class="page" id="page-flashcard" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">🃏 Flashcard</h1>
+        <p class="section-sub">Klik kartu untuk membalik • Tebak artinya sebelum lihat!</p>
+      </div>
+      <div class="flashcard-container">
+        <div class="fc-controls" id="fcControls" role="group" aria-label="Kategori flashcard"></div>
+
+        <div class="card-scene" id="cardScene" onclick="flipCard()" role="button" tabindex="0"
+             onkeypress="if(event.key==='Enter'||event.key===' ')flipCard()"
+             aria-label="Kartu flashcard, tekan Enter untuk balik">
+          <div class="card-inner" id="cardInner">
+            <div class="card-face card-front">
+              <div class="card-char" id="fcChar">你好</div>
+              <div class="card-tone-dots" id="fcToneDots"></div>
+              <div class="card-hint">Klik untuk lihat arti →</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="card-pinyin" id="fcPinyin">nǐ hǎo</div>
+              <div class="card-meaning" id="fcMeaning">Halo / Apa kabar</div>
+              <div class="card-example" id="fcExample"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fc-actions">
+          <button class="audio-btn" onclick="speakCurrentCard()" aria-label="Dengarkan pelafalan">
+            🔊 Dengarkan
+          </button>
+          <button class="audio-btn audio-btn--green" onclick="markLearned()" aria-label="Tandai sudah hafal">
+            ✓ Sudah Hafal
+          </button>
+        </div>
+
+        <div class="card-nav" role="group" aria-label="Navigasi kartu">
+          <button class="card-btn" onclick="prevCard()" aria-label="Kartu sebelumnya">←</button>
+          <span class="card-counter" id="cardCounter" aria-live="polite">1 / 10</span>
+          <button class="card-btn" onclick="nextCard()" aria-label="Kartu berikutnya">→</button>
+        </div>
+
+        <div class="fc-progress">
+          <div class="fc-progress-bar" id="fcProgressBar"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ PAGE -->
+    <div class="page" id="page-quiz" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">📝 Kuis Adaptif AI</h1>
+        <p class="section-sub">AI membuat soal unik sesuai level kemampuanmu setiap sesi</p>
+      </div>
+      <div id="quizApiNotice" class="api-notice" role="alert">
+        <span class="api-notice-icon">⚡</span>
+        <div class="api-notice-body">
+          <strong>Aktifkan Kuis AI</strong> — Masukkan API Key Anthropic untuk soal yang dihasilkan AI secara otomatis. Tanpa API Key, kuis tetap berjalan dengan soal bawaan.
+          <div class="api-key-row">
+            <input type="password" class="api-key-input" id="apiKeyQuiz" placeholder="sk-ant-api03-..." autocomplete="off" />
+            <button class="api-save-btn" onclick="saveApiKeyFrom('quiz')">Simpan</button>
+          </div>
+        </div>
+      </div>
+      <div id="quizArea"></div>
+    </div>
+
+    <!-- GAME PAGE -->
+    <div class="page" id="page-game" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">🎮 Mini Game: Tebak Karakter</h1>
+        <p class="section-sub">Tebak arti karakter Hanzi secepat mungkin! Makin cepat = makin banyak poin</p>
+      </div>
+      <div class="game-area" id="gameArea">
+        <div id="gameMenu" class="game-menu">
+          <div class="game-menu-char">汉</div>
+          <h2>Tantang Dirimu!</h2>
+          <p>30 detik · Tebak sebanyak mungkin karakter Hanzi</p>
+          <div class="game-highscore-row">
+            <div class="game-highscore-item">
+              <span class="hs-num" id="hsScore">0</span>
+              <span class="hs-label">Skor Terbaik</span>
+            </div>
+            <div class="game-highscore-item">
+              <span class="hs-num" id="hsBest">0</span>
+              <span class="hs-label">Benar Terbanyak</span>
+            </div>
+          </div>
+          <button class="btn btn--primary btn--large" onclick="startGame()">▶ Mulai Permainan</button>
+        </div>
+
+        <div id="gamePlay" class="game-play" style="display:none">
+          <div class="game-hud">
+            <div class="hud-item">
+              <div class="hud-label">SKOR</div>
+              <div class="hud-value hud-value--gold" id="gameScore">0</div>
+            </div>
+            <div class="hud-timer">
+              <div class="time-bar-wrap">
+                <div class="time-bar"><div class="time-bar-fill" id="timeBar"></div></div>
+              </div>
+              <div class="time-label"><span id="timeLeft">30</span>s</div>
+            </div>
+            <div class="hud-item hud-item--right">
+              <div class="hud-label">BENAR</div>
+              <div class="hud-value hud-value--green" id="gameCorrect">0</div>
+            </div>
+          </div>
+
+          <div class="game-question">
+            <div class="game-char" id="gameChar">你</div>
+            <div class="game-subtext" id="gameSubtext">Pilih arti yang benar!</div>
+          </div>
+          <div class="game-choices" id="gameChoices"></div>
+        </div>
+
+        <div id="gameOver" class="game-over" style="display:none">
+          <div class="go-medal" id="goMedal">🏆</div>
+          <div class="go-score" id="goScore">0</div>
+          <div class="go-label">Poin Diperoleh</div>
+          <div class="go-stats">
+            <div class="go-stat"><span class="go-stat-num go-correct" id="goCorrect">0</span><span class="go-stat-label">Benar</span></div>
+            <div class="go-stat"><span class="go-stat-num go-wrong" id="goWrong">0</span><span class="go-stat-label">Salah</span></div>
+            <div class="go-stat"><span class="go-stat-num" id="goXP" style="color:var(--gold)">0</span><span class="go-stat-label">XP Diperoleh</span></div>
+          </div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <button class="btn btn--primary" onclick="startGame()">🔄 Main Lagi</button>
+            <button class="btn btn--ghost" onclick="showPage('quiz')">📝 Coba Kuis</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI TUTOR PAGE -->
+    <div class="page" id="page-ai" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">🤖 Tutor AI Mandarin</h1>
+        <p class="section-sub">Tanya apa saja tentang Bahasa Mandarin — grammar, kosakata, budaya, dialog</p>
+      </div>
+
+      <div id="aiApiNotice" class="api-notice" role="alert">
+        <span class="api-notice-icon">🔑</span>
+        <div class="api-notice-body">
+          <strong>Aktifkan Tutor AI</strong> — Masukkan API Key Anthropic Claude untuk mulai chatting dengan AI.
+          <div class="api-key-row">
+            <input type="password" class="api-key-input" id="apiKeyAI" placeholder="sk-ant-api03-..." autocomplete="off" />
+            <button class="api-save-btn" onclick="saveApiKeyFrom('ai')">Simpan & Aktifkan</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ai-layout">
+        <aside class="ai-sidebar" aria-label="Pertanyaan cepat">
+          <h3 class="sidebar-heading">💡 Coba Tanya</h3>
+          <div class="prompt-list" id="promptList"></div>
+          <h3 class="sidebar-heading">🎯 Mode Latihan</h3>
+          <div class="prompt-list" id="promptListPractice"></div>
+        </aside>
+
+        <div class="ai-chat-wrap">
+          <div class="chat-messages" id="chatMessages" aria-live="polite" aria-label="Riwayat percakapan"></div>
+          <div class="typing-indicator" id="typingIndicator" aria-live="polite">
+            <div class="dot-bounce"><span></span><span></span><span></span></div>
+            <span>AI sedang mengetik...</span>
+          </div>
+          <div class="chat-input-area">
+            <textarea
+              class="chat-input"
+              id="chatInput"
+              placeholder="Tanya tentang Mandarin... (Enter kirim, Shift+Enter baris baru)"
+              onkeydown="handleChatKey(event)"
+              rows="1"
+              aria-label="Input pesan"
+            ></textarea>
+            <button class="send-btn" onclick="sendChat()" id="sendBtn" aria-label="Kirim pesan">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS PAGE -->
+    <div class="page" id="page-settings" role="tabpanel">
+      <div class="page-header">
+        <h1 class="section-title">⚙️ Pengaturan</h1>
+        <p class="section-sub">Konfigurasi API Key dan preferensi belajar</p>
+      </div>
+
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h3>🔑 API Key Anthropic</h3>
+          <p class="settings-desc">Masukkan API Key dari <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a> untuk mengaktifkan Kuis AI dan Tutor AI.</p>
+          <div class="api-key-row" style="margin-top:14px">
+            <input type="password" class="api-key-input" id="apiKeySettings" placeholder="sk-ant-api03-..." autocomplete="off" />
+            <button class="api-save-btn" onclick="saveApiKeyFrom('settings')">Simpan</button>
+          </div>
+          <div class="api-status" id="apiStatus"></div>
+        </div>
+
+        <div class="settings-card">
+          <h3>🔊 Pengaturan Audio</h3>
+          <p class="settings-desc">Aktifkan/nonaktifkan pelafalan otomatis saat menjawab soal.</p>
+          <label class="toggle-label">
+            <input type="checkbox" id="autoSpeakToggle" onchange="toggleAutoSpeak(this.checked)" checked />
+            <span class="toggle-switch"></span>
+            Pelafalan otomatis
+          </label>
+          <label class="toggle-label" style="margin-top:12px">
+            <input type="checkbox" id="sfxToggle" onchange="toggleSFX(this.checked)" checked />
+            <span class="toggle-switch"></span>
+            Efek suara (benar/salah)
+          </label>
+        </div>
+
+        <div class="settings-card">
+          <h3>📊 Data & Reset</h3>
+          <p class="settings-desc">Kelola data progres belajarmu.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+            <button class="btn btn--ghost btn--sm" onclick="exportProgress()">📥 Export Progres</button>
+            <button class="btn btn--danger btn--sm" onclick="confirmReset()">🗑️ Reset Semua Data</button>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3>ℹ️ Tentang Aplikasi</h3>
+          <p class="settings-desc">
+            <strong>汉语学堂 · HanYu Academy v1.0</strong><br>
+            Platform belajar Bahasa Mandarin modern berbasis AI.<br><br>
+            Dibuat dengan ❤️ menggunakan HTML, CSS, JavaScript murni.<br>
+            Didukung oleh Claude AI (Anthropic).
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main><!-- /main -->
+
+  <!-- ===== MOBILE BOTTOM NAV ===== -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Navigasi mobile">
+    <button class="mob-btn active" onclick="showPage('home')"      data-mob="home"      aria-label="Beranda"><span class="mob-icon">🏠</span><span>Beranda</span></button>
+    <button class="mob-btn"        onclick="showPage('flashcard')" data-mob="flashcard" aria-label="Flashcard"><span class="mob-icon">🃏</span><span>Kartu</span></button>
+    <button class="mob-btn"        onclick="showPage('quiz')"      data-mob="quiz"      aria-label="Kuis"><span class="mob-icon">📝</span><span>Kuis</span></button>
+    <button class="mob-btn"        onclick="showPage('game')"      data-mob="game"      aria-label="Game"><span class="mob-icon">🎮</span><span>Game</span></button>
+    <button class="mob-btn"        onclick="showPage('ai')"        data-mob="ai"        aria-label="Tutor AI"><span class="mob-icon">🤖</span><span>Tutor</span></button>
+  </nav>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===== MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()" aria-hidden="true">
+    <div class="modal" id="modal" onclick="event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/vocab.js"></script>
+  <script src="js/flashcard.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

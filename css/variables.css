@@ -1,0 +1,72 @@
+/* ===== DESIGN TOKENS ===== */
+:root {
+  /* Brand Colors */
+  --red:          #C8102E;
+  --red-light:    #e8294a;
+  --red-dark:     #9a0d22;
+  --gold:         #FFB800;
+  --gold-light:   #ffd166;
+  --gold-dark:    #cc9200;
+
+  /* UI Colors */
+  --green:        #4ade80;
+  --green-bg:     rgba(74,222,128,0.12);
+  --error:        #ff6b7a;
+  --error-bg:     rgba(200,16,46,0.12);
+
+  /* Background / Surface */
+  --bg:           #0f0f1e;
+  --bg-nav:       rgba(15,15,30,0.92);
+  --surface-1:    rgba(255,255,255,0.04);
+  --surface-2:    rgba(255,255,255,0.07);
+  --surface-3:    rgba(255,255,255,0.10);
+  --border:       rgba(255,255,255,0.09);
+  --border-gold:  rgba(255,184,0,0.25);
+
+  /* Text */
+  --text-primary:   #ffffff;
+  --text-secondary: rgba(255,255,255,0.65);
+  --text-muted:     rgba(255,255,255,0.38);
+
+  /* Fonts */
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-serif:   'Noto Serif SC', Georgia, serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm:  0 2px 12px rgba(0,0,0,0.2);
+  --shadow-md:  0 8px 32px rgba(0,0,0,0.3);
+  --shadow-lg:  0 20px 60px rgba(0,0,0,0.4);
+  --shadow-red: 0 4px 24px rgba(200,16,46,0.4);
+  --shadow-gold:0 4px 20px rgba(255,184,0,0.3);
+
+  /* Transitions */
+  --ease:      cubic-bezier(0.4,0,0.2,1);
+  --trans-sm:  all 0.15s var(--ease);
+  --trans-md:  all 0.25s var(--ease);
+  --trans-lg:  all 0.4s var(--ease);
+
+  /* Layout */
+  --nav-h:        64px;
+  --mob-nav-h:    68px;
+  --max-w:        1120px;
+  --page-pad:     32px;
+}

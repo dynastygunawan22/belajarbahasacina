@@ -1,0 +1,82 @@
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .nav-tabs { display: none; }
+  .mobile-nav { display: flex; }
+  .ai-layout { grid-template-columns: 1fr; height: auto; }
+  .ai-sidebar { display: none; }
+  .ai-chat-wrap { height: 55vh; min-height: 380px; }
+  .page { padding: 20px 16px calc(16px + var(--mob-nav-h)); }
+  .hero { padding: 40px 10px 28px; }
+  .progress-section { padding: var(--space-5); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  :root { --page-pad: 14px; }
+  .navbar { padding: 0 14px; gap: 10px; }
+  .nav-logo-text { display: none; }
+  .nav-right { gap: 8px; }
+  .streak-badge { display: none; }
+
+  .hero-title { font-size: 32px; }
+  .hero-desc { font-size: 14px; }
+  .stats-row { gap: 8px; }
+  .stat-item { padding: var(--space-3); }
+  .stat-num { font-size: 24px; }
+
+  .feature-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .feature-card { padding: var(--space-4); }
+  .feature-icon { font-size: 26px; margin-bottom: 8px; }
+  .feature-card h3 { font-size: 13px; }
+  .feature-card p { font-size: 12px; }
+
+  .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 9px; }
+  .vocab-char { font-size: 28px; }
+
+  .card-scene { height: 250px; }
+  .card-char { font-size: 68px; }
+  .card-pinyin { font-size: 22px; }
+  .card-meaning { font-size: 18px; }
+
+  .quiz-question { font-size: 48px; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-option { padding: 14px; }
+  .quiz-card { padding: var(--space-5); }
+
+  .game-char { font-size: 72px; }
+  .game-question { padding: 28px 20px; }
+  .game-choices { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .game-choice { padding: 13px 10px; font-size: 13px; }
+
+  .chat-messages { padding: var(--space-4); }
+  .msg { max-width: 90%; }
+
+  .settings-grid { grid-template-columns: 1fr; }
+
+  .toast { font-size: 13px; padding: 9px 18px; max-width: 86vw; }
+  .modal { padding: var(--space-5); }
+
+  .go-score, .result-score { font-size: 56px; }
+}
+
+/* Very small */
+@media (max-width: 360px) {
+  .feature-grid { grid-template-columns: 1fr; }
+  .game-choices { grid-template-columns: 1fr; }
+}
+
+/* Wide screens */
+@media (min-width: 1200px) {
+  .feature-grid { grid-template-columns: repeat(3, 1fr); }
+  .vocab-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+}
+
+/* Prevent iOS tap highlight */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Safe area padding on mobile */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .mobile-nav { padding-bottom: env(safe-area-inset-bottom); }
+}

@@ -1,0 +1,27 @@
+/* ===== VOCABULARY ===== */
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.vocab-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--trans-md);
+  position: relative;
+}
+.vocab-card:hover { transform: translateY(-3px); border-color: var(--border-gold); box-shadow: var(--shadow-sm); }
+.vocab-card.learned::before {
+  content: '✓';
+  position: absolute;
+  top: 8px; right: 10px;
+  color: var(--green);
+  font-size: 11px; font-weight: 700;
+}
+.vocab-char    { font-family: var(--font-serif); font-size: 34px; color: var(--gold); margin-bottom: 7px; text-shadow: var(--shadow-gold); }
+.vocab-pinyin  { font-size: 11px; color: var(--text-muted); margin-bottom: 3px; }
+.vocab-meaning { font-size: 13px; color: var(--text-primary); }
